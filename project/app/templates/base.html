@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% block styles %}
+  <!-- Bootstrap CSS -->
+  {{ bootstrap.load_css() }}
+  {% endblock %}
+
+  <title>
+    {% block title %}
+    {% if title %}
+    {{ title }} - 2D Project
+    {% else %}
+    2D Project
+    {% endif %}
+    {% endblock %}
+  </title>
+  {% endblock %}
+</head>
+
+<body class="bg-dark text-light">
+  {% block navbar %}
+  <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <a class="navbar-brand" href="{{ url_for('index') }}">2D Project</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+        data-bs-target="#bs-example-navbar-collapse-1">
+      </button>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="navbar-nav ">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Predictor</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">About</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Github</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% endblock %}
+
+  <!-- Your page content -->
+  {% block content %}
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block app_content %}{% endblock %}
+  </div>
+  {% endblock %}
+
+  {% block scripts %}
+  {{ bootstrap.load_js() }}
+  <!--<script type="module">import * as library from './static/__target__/clientlibrary.js'; window.library = library;</script> -->
+  {% endblock %}
+</body>
+
+</html>
