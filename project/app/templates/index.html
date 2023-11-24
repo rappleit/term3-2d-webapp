@@ -8,7 +8,7 @@
         <div class="card  " style="background-color:#edf2ff; width: 50%;">
             <div class="card-body">
                 <h5 class="card-title">Input Quality of Governance</h5>
-                <form action="#" method="post" class="d-flex flex-column">
+                <form method="POST", action="{{url_for('prediction')}}" class="d-flex flex-column">
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-end">
                             <p class="m-0" style="font-size: 14px;">Control of Corruption: (-2.5 Weak to 2.5 Strong)</p>
@@ -34,7 +34,8 @@
                     </div>
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-end">
-                            <p class="m-0" style="font-size: 14px;">Rule of Law</p>
+                            <p class="m-0" style="font-size: 14px;">Rule of Law (-2.5 Weak
+                                to 2.5 Strong)</p>
                             <input class="rounded-3 border border-1 border-dark p-2" type="text" id="rolValue"
                                 name="rolValue" value=0 style="width: 60px; height: 30px;"
                                 onchange="updateSliderInputROL(this.value)" />
@@ -45,7 +46,8 @@
                     </div>
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-end">
-                            <p class="m-0" style="font-size: 14px;">Government Effectiveness</p>
+                            <p class="m-0" style="font-size: 14px;">Government Effectiveness (-2.5 Weak
+                                to 2.5 Strong)</p>
                             <input class="rounded-3 border border-1 border-dark p-2" type="text" id="geValue"
                                 name="geValue" value=0 style="width: 60px; height: 30px;"
                                 onchange="updateSliderInputGE(this.value)" />
@@ -56,13 +58,13 @@
                     </div>
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-end">
-                            <p class="m-0" style="font-size: 14px;">Literacy Rate</p>
+                            <p class="m-0" style="font-size: 14px;">Literacy Rate (0-100%)</p>
                             <input class="rounded-3 border border-1 border-dark p-2" type="text" id="lrValue"
                                 name="lrValue" value=0 style="width: 60px; height: 30px;"
                                 onchange="updateSliderInputLR(this.value)" />
 
                         </div>
-                        <input type="range" id="lrSlider" name="lrSlider" min="-2.5" max="2.5" step="0.01" value="0"
+                        <input type="range" id="lrSlider" name="lrSlider" min="0" max="100" step="0.1" value="0"
                             oninput="updateTextInputLR(this.value)" style="width: 100%;" />
                     </div>
 
@@ -76,14 +78,20 @@
             <div class="card-body">
                 <h5 class="card-title">Predicted Prevalence of Food Insecurity</h5>
                 <p class="card-text">
-                    The predicted prevalence of moderate/severe food insecurity is:
+                    The predicted prevalence of moderate/severe food insecurity is: 
                 </p>
+                {% if data %}
+                    <h2>{{ data[0]|round(2) }} %</h2>
+                    <p class="font-weight-bolder">Control of Corruption: {{ input[0] }}</p>
+                    <p class="font-weight-bolder">Political Stability: {{ input[1] }}</p>
+                    <p class="font-weight-bolder">Rule of Law: {{ input[2] }}</p>
+                    <p class="font-weight-bolder">Government Effectiveness: {{ input[3] }}</p>
+                    <pclass="font-weight-bolder" >Literacy Level {{ input[4] }}</p>
 
-
+                {% endif %}
             </div>
         </div>
     </div>
-    <h3 class="font-weight-bolder mt-5">Visualisation</h3>
 </div>
 
 <script>
