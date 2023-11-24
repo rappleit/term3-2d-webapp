@@ -55,7 +55,6 @@ The project structure is as follows:
     │   ├── static
     │   ├── templates
     │   ├── __init__.py
-    │   ├── middleware.py
     │   └── routes.py
     ├── predMod.pkl
     ├── config.py
