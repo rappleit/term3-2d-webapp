@@ -2,7 +2,7 @@
 
 ## Overview
 
-A web-based prediction tool to predict the level of food insecurity in a given country based on the quality of its governance. Created for SUTD's 2023 Term 3 2D Project.
+A web-based Flask prediction tool to predict the level of food insecurity in a given country based on the quality of its governance. Created for SUTD's 2023 Term 3 2D Project.
 
 ## Installation
 
@@ -55,6 +55,7 @@ The project structure is as follows:
     │   ├── static
     │   ├── templates
     │   ├── __init__.py
+    │   ├── middleware.py
     │   └── routes.py
     ├── predMod.pkl
     ├── config.py
